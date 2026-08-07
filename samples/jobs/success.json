@@ -1,0 +1,8 @@
+{
+  "type": "thumbnail",
+  "payload": {
+    "source": "s3://example/input.jpg",
+    "width": 640
+  },
+  "work_ms": 150
+}

@@ -1,0 +1,7 @@
+{
+  "type": "always-fail",
+  "payload": {
+    "reason": "demonstrate dead-letter handling"
+  },
+  "fail_until_attempt": 100
+}

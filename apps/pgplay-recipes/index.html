@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Browser PostgreSQL workbench for distributed systems patterns" />
+  <title>PGPlay Recipes</title>
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Distributed Workbench</p>
+        <h1>PGPlay Recipes</h1>
+      </div>
+      <div id="db-status" class="status loading">PostgreSQLを起動中…</div>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar panel">
+        <h2>Recipe</h2>
+        <select id="recipe"></select>
+        <p id="recipe-description" class="muted"></p>
+        <button id="apply-recipe">Reset + Apply recipe</button>
+
+        <div class="divider"></div>
+        <div class="section-title"><h2>Schema</h2><button id="refresh-schema" class="small secondary">Refresh</button></div>
+        <div id="schema" class="schema"><p class="muted">Loading…</p></div>
+
+        <div class="divider"></div>
+        <h2>Workspace</h2>
+        <div class="stack">
+          <button id="schema-checks" class="secondary">Schema checks</button>
+          <button id="share" class="secondary">Share SQL</button>
+          <button id="export" class="secondary">Export workspace</button>
+          <label class="file-button">Import workspace<input id="import" type="file" accept="application/json" /></label>
+        </div>
+      </aside>
+
+      <section class="workspace">
+        <div class="panel editor-panel">
+          <div class="section-title">
+            <h2>SQL</h2>
+            <div class="actions">
+              <button id="explain" class="secondary">Explain</button>
+              <button id="run">Run SQL</button>
+            </div>
+          </div>
+          <textarea id="sql" spellcheck="false" aria-label="SQL editor"></textarea>
+          <div class="editor-footer"><span><kbd>Ctrl</kbd> + <kbd>Enter</kbd> to run</span><span id="execution-time"></span></div>
+        </div>
+
+        <div class="panel result-panel">
+          <div class="section-title"><h2>Result</h2><span id="result-meta" class="muted"></span></div>
+          <div id="result" class="result"><p class="muted">SQLを実行してください。</p></div>
+        </div>
+
+        <div class="panel checks-panel">
+          <div class="section-title"><h2>Checks / History</h2><button id="clear-history" class="small secondary">Clear</button></div>
+          <div id="checks"></div>
+          <div id="history" class="query-history"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

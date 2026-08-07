@@ -1,0 +1,99 @@
+name: distributed-workbench
+
+services:
+  harbor-observer:
+    build:
+      context: ./apps/harbor-observer
+    environment:
+      LISTEN_ADDR: :8081
+      HARBOR_SERVERS: local=http://host.docker.internal:3000
+      HISTORY_FILE: /data/probes.jsonl
+    ports:
+      - "8081:8081"
+    volumes:
+      - harbor-observer-data:/data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  nsqlookupd:
+    image: nsqio/nsq:v1.3.0
+    command: /nsqlookupd
+    ports:
+      - "4160:4160"
+      - "4161:4161"
+
+  nsqd:
+    image: nsqio/nsq:v1.3.0
+    command:
+      - /nsqd
+      - --lookupd-tcp-address=nsqlookupd:4160
+      - --broadcast-address=nsqd
+      - --data-path=/data
+    depends_on:
+      - nsqlookupd
+    ports:
+      - "4150:4150"
+      - "4151:4151"
+    volumes:
+      - nsq-data:/data
+
+  nsqadmin:
+    image: nsqio/nsq:v1.3.0
+    command:
+      - /nsqadmin
+      - --lookupd-http-address=nsqlookupd:4161
+    depends_on:
+      - nsqlookupd
+    ports:
+      - "4171:4171"
+
+  nsq-api:
+    build:
+      context: ./apps/nsq-reliable-worker
+      args:
+        TARGET: api
+    environment:
+      LISTEN_ADDR: :8082
+      NSQD_HTTP_URL: http://nsqd:4151
+      NSQ_TOPIC: jobs
+      OUTBOX_FILE: /data/outbox.jsonl
+    depends_on:
+      - nsqd
+    ports:
+      - "8082:8082"
+    volumes:
+      - nsq-api-data:/data
+
+  nsq-worker:
+    build:
+      context: ./apps/nsq-reliable-worker
+      args:
+        TARGET: worker
+    environment:
+      METRICS_ADDR: :8083
+      NSQD_TCP_ADDRESS: nsqd:4150
+      NSQD_HTTP_URL: http://nsqd:4151
+      NSQ_TOPIC: jobs
+      NSQ_CHANNEL: processor
+      NSQ_DLQ_TOPIC: jobs_dlq
+      PROCESSED_FILE: /data/processed.jsonl
+      MAX_ATTEMPTS: "5"
+      BASE_REQUEUE_DELAY: 2s
+    depends_on:
+      - nsqd
+    ports:
+      - "8083:8083"
+    volumes:
+      - nsq-worker-data:/data
+
+  pgplay-recipes:
+    build:
+      context: ./apps/pgplay-recipes
+    ports:
+      - "5173:80"
+
+volumes:
+  harbor-observer-data:
+  nsq-data:
+  nsq-api-data:
+  nsq-worker-data:
