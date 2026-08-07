@@ -1,6 +1,6 @@
 # Validation Report
 
-Validated on 2026-08-07 in the artifact build environment.
+Validated on 2026-08-07.
 
 ## Passed
 
@@ -14,19 +14,23 @@ Validated on 2026-08-07 in the artifact build environment.
 - `compose.yaml` YAML parse
 - JSON manifest parse
 - Relative Markdown link validation
-- TypeScript source check with the available compiler and a temporary declaration matching the documented PGlite API
+- `npm install`, `npm run typecheck`, and `npm run build` for PGPlay Recipes
 
-## Not executed in this environment
+## Frontend dependency versions
 
-The build environment cannot reach the npm registry, so `npm install` and the final Vite bundle were not executed. The frontend dependency names and versions were checked against the official repositories:
+Resolved against the npm registry:
 
 - `@electric-sql/pglite 0.5.4`
 - `vite 8.2.1`
-- `typescript 6.0.0`
+- `typescript 7.0.2`
 
-Run the following after extraction to complete the frontend verification:
+TypeScript has no stable `6.0.0` release — `6.0.0-beta` is the only 6.x tag, and the current stable line is 7.x. `package-lock.json` is committed so installs are reproducible.
+
+## Reproducing
 
 ```bash
+./scripts/verify.sh          # gofmt, go test, go vet, and the frontend build when node_modules exists
+
 cd apps/pgplay-recipes
 npm install
 npm run typecheck
