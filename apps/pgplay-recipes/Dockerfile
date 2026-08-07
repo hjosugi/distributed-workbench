@@ -1,8 +1,8 @@
 FROM node:24-alpine AS build
 WORKDIR /app
-COPY package.json tsconfig.json vite.config.ts index.html ./
+COPY package.json package-lock.json tsconfig.json vite.config.ts index.html ./
 COPY src ./src
-RUN npm install --no-audit --no-fund
+RUN npm ci --no-audit --no-fund
 RUN npm run build
 
 FROM nginx:1.29-alpine

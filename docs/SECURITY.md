@@ -4,7 +4,7 @@
 
 - Probe先は起動時に設定したserverだけです。
 - APIから受け取るのは相対pathだけで、schemeとhostを拒否します。
-- response bodyは最大1 MiBまで読みます。
+- response bodyは`MAX_BODY_BYTES`（既定8 MiB）まで読み、超過分は`truncated`として切り捨てます。
 - productionではdashboardへauthenticationを追加してください。
 
 ## NSQ sample
