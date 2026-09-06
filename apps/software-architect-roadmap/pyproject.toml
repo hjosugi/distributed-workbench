@@ -1,0 +1,6 @@
+[project]
+name = "software-architect-roadmap"
+version = "0.1.0"
+description = "53 architecture topics with executable learning labs"
+requires-python = ">=3.12"
+dependencies = []

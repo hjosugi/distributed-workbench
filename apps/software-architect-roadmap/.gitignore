@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.db
+*.db-shm
+*.db-wal
+*.class
+.venv/
+.env
+artifacts/
+.coverage
+coverage.xml
+.scannerwork/
+certs/
+!data/
+!data/*.json
+!data/*.jsonl

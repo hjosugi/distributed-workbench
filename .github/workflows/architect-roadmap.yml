@@ -1,0 +1,81 @@
+name: architect-roadmap
+on:
+  push:
+    paths:
+      - apps/software-architect-roadmap/**
+      - .github/workflows/architect-roadmap.yml
+  pull_request:
+    paths:
+      - apps/software-architect-roadmap/**
+      - .github/workflows/architect-roadmap.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: apps/software-architect-roadmap
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python -m unittest discover -s tests -v
+      - run: python -m architect_lab all
+      - run: python scripts/check_docs.py
+      - run: python scripts/check_configs.py
+  catalogs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: apps/software-architect-roadmap
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: actions/setup-go@v6
+        with:
+          go-version: '1.25.x'
+          cache: false
+      - run: python scripts/check_catalogs.py python javascript java go
+      - run: node --test examples/catalog/javascript/catalog.test.mjs
+      - run: go test ./...
+        working-directory: apps/software-architect-roadmap/examples/catalog/go
+        env:
+          GOWORK: 'off'
+  containers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: apps/software-architect-roadmap
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: docker compose --profile data config --quiet
+      - run: docker compose -f infra/elk/compose.yaml config --quiet
+      - run: docker compose up --build --wait --wait-timeout 180
+      - run: python scripts/smoke_http.py
+      - run: python scripts/check_gateway.py
+      - run: docker compose --profile data up -d --wait --wait-timeout 180 kafka redis
+      - run: python scripts/kafka_roundtrip.py
+      - run: python scripts/check_redis.py
+      - if: failure()
+        run: docker compose --profile data logs --tail 100
+      - if: always()
+        run: docker compose --profile data down -v

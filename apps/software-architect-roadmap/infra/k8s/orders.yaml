@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: architect-lab
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orders
+  namespace: architect-lab
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: architect-orders}
+  template:
+    metadata:
+      labels: {app: architect-orders}
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        fsGroup: 10001
+      containers:
+        - name: orders
+          image: architect-orders:local
+          imagePullPolicy: IfNotPresent
+          ports: [{containerPort: 8080}]
+          resources:
+            requests: {cpu: 100m, memory: 64Mi}
+            limits: {cpu: 500m, memory: 256Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: {drop: [ALL]}
+          readinessProbe:
+            httpGet: {path: /health, port: 8080}
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: {path: /health, port: 8080}
+            initialDelaySeconds: 10
+          volumeMounts:
+            - {name: data, mountPath: /data}
+      volumes:
+        - name: data
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: orders
+  namespace: architect-lab
+spec:
+  selector: {app: architect-orders}
+  ports: [{port: 80, targetPort: 8080}]

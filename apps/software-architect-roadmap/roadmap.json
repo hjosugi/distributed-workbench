@@ -1,0 +1,742 @@
+[
+  {
+    "number": 1,
+    "group": "1. Programming languages",
+    "id": "java",
+    "title": "Java",
+    "kind": "Executable HTTP service",
+    "document": "docs/topics/01-java.md",
+    "implementation": [
+      "examples/catalog/java/Catalog.java"
+    ],
+    "command": "java examples/catalog/java/Catalog.java",
+    "source": "https://docs.oracle.com/en/java/javase/17/docs/api/jdk.httpserver/com/sun/net/httpserver/HttpServer.html"
+  },
+  {
+    "number": 2,
+    "group": "1. Programming languages",
+    "id": "python",
+    "title": "Python",
+    "kind": "Executable HTTP service and core labs",
+    "document": "docs/topics/02-python.md",
+    "implementation": [
+      "examples/catalog/python/catalog.py",
+      "architect_lab/domain.py"
+    ],
+    "command": "python3 examples/catalog/python/catalog.py",
+    "source": "https://docs.python.org/3/library/http.server.html"
+  },
+  {
+    "number": 3,
+    "group": "1. Programming languages",
+    "id": "go",
+    "title": "Go / Golang",
+    "kind": "Executable HTTP service",
+    "document": "docs/topics/03-go.md",
+    "implementation": [
+      "examples/catalog/go/main.go",
+      "examples/catalog/go/main_test.go"
+    ],
+    "command": "GOWORK=off go run examples/catalog/go/main.go",
+    "source": "https://pkg.go.dev/net/http"
+  },
+  {
+    "number": 4,
+    "group": "1. Programming languages",
+    "id": "javascript",
+    "title": "JavaScript / Node.js",
+    "kind": "Executable HTTP service",
+    "document": "docs/topics/04-javascript.md",
+    "implementation": [
+      "examples/catalog/javascript/catalog.mjs",
+      "examples/catalog/javascript/catalog.test.mjs"
+    ],
+    "command": "node --test examples/catalog/javascript/catalog.test.mjs",
+    "source": "https://nodejs.org/api/http.html"
+  },
+  {
+    "number": 5,
+    "group": "2. Tools",
+    "id": "github",
+    "title": "GitHub",
+    "kind": "Workflow and repository integration",
+    "document": "docs/topics/05-github.md",
+    "implementation": [
+      "scripts/check_docs.py",
+      "README.md"
+    ],
+    "command": "python3 scripts/check_docs.py",
+    "source": "https://docs.github.com/en/actions/get-started/quickstart"
+  },
+  {
+    "number": 6,
+    "group": "2. Tools",
+    "id": "jenkins",
+    "title": "Jenkins",
+    "kind": "Pipeline configuration",
+    "document": "docs/topics/06-jenkins.md",
+    "implementation": [
+      "Jenkinsfile"
+    ],
+    "command": "python3 -m unittest discover -s tests -v",
+    "source": "https://www.jenkins.io/doc/book/pipeline/syntax/"
+  },
+  {
+    "number": 7,
+    "group": "2. Tools",
+    "id": "jira",
+    "title": "Jira",
+    "kind": "Concrete issue payload and workflow exercise",
+    "document": "docs/topics/07-jira.md",
+    "implementation": [
+      "data/jira-issue.json",
+      "docs/WORKING_WITH_PEOPLE.md"
+    ],
+    "command": "python3 -m json.tool data/jira-issue.json",
+    "source": "https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/"
+  },
+  {
+    "number": 8,
+    "group": "2. Tools",
+    "id": "elk",
+    "title": "ELK: Elasticsearch, Logstash, Kibana",
+    "kind": "Real integration configuration",
+    "document": "docs/topics/08-elk.md",
+    "implementation": [
+      "infra/elk/compose.yaml",
+      "infra/elk/pipeline.conf",
+      "scripts/send_logs.py"
+    ],
+    "command": "docker compose -f infra/elk/compose.yaml up -d",
+    "source": "https://www.elastic.co/docs/reference/logstash/plugins/plugins-codecs-json_lines"
+  },
+  {
+    "number": 9,
+    "group": "2. Tools",
+    "id": "sonar",
+    "title": "Sonar / SonarQube",
+    "kind": "Scanner configuration",
+    "document": "docs/topics/09-sonar.md",
+    "implementation": [
+      "sonar-project.properties"
+    ],
+    "command": "python3 -m compileall -q architect_lab examples",
+    "source": "https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/scanners/sonarscanner"
+  },
+  {
+    "number": 10,
+    "group": "3. Design principles",
+    "id": "oops",
+    "title": "OOPS / Object-oriented programming",
+    "kind": "Executable domain model",
+    "document": "docs/topics/10-oops.md",
+    "implementation": [
+      "architect_lab/domain.py",
+      "architect_lab/storage.py"
+    ],
+    "command": "python3 -m architect_lab orders",
+    "source": "https://docs.python.org/3/library/http.server.html"
+  },
+  {
+    "number": 11,
+    "group": "3. Design principles",
+    "id": "clean-code",
+    "title": "Clean Code",
+    "kind": "Executable functional core and adapters",
+    "document": "docs/topics/11-clean-code.md",
+    "implementation": [
+      "architect_lab/domain.py",
+      "architect_lab/server.py"
+    ],
+    "command": "python3 -m unittest discover -s tests -p test_core.py -v",
+    "source": "https://martinfowler.com/bliki/TestDrivenDevelopment.html"
+  },
+  {
+    "number": 12,
+    "group": "3. Design principles",
+    "id": "tdd",
+    "title": "TDD",
+    "kind": "Behavior tests and red/green/refactor exercise",
+    "document": "docs/topics/12-tdd.md",
+    "implementation": [
+      "tests/test_core.py",
+      "docs/TDD_WALKTHROUGH.md"
+    ],
+    "command": "python3 -m unittest discover -s tests -p test_core.py -v",
+    "source": "https://martinfowler.com/bliki/TestDrivenDevelopment.html"
+  },
+  {
+    "number": 13,
+    "group": "3. Design principles",
+    "id": "ddd",
+    "title": "Domain-Driven Design",
+    "kind": "Domain model and context boundary exercise",
+    "document": "docs/topics/13-ddd.md",
+    "implementation": [
+      "architect_lab/domain.py",
+      "architect_lab/storage.py",
+      "docs/SYSTEM_DESIGN.md"
+    ],
+    "command": "python3 -m architect_lab orders",
+    "source": "https://www.domainlanguage.com/ddd/reference/"
+  },
+  {
+    "number": 14,
+    "group": "3. Design principles",
+    "id": "cap",
+    "title": "CAP theorem",
+    "kind": "Deterministic partition model",
+    "document": "docs/topics/14-cap.md",
+    "implementation": [
+      "architect_lab/distributed.py"
+    ],
+    "command": "python3 -m architect_lab cap",
+    "source": "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf"
+  },
+  {
+    "number": 15,
+    "group": "3. Design principles",
+    "id": "acid",
+    "title": "ACID",
+    "kind": "Real SQLite transaction and failure injection",
+    "document": "docs/topics/15-acid.md",
+    "implementation": [
+      "architect_lab/storage.py",
+      "tests/test_core.py"
+    ],
+    "command": "python3 -m architect_lab acid",
+    "source": "https://docs.python.org/3/library/sqlite3.html"
+  },
+  {
+    "number": 16,
+    "group": "3. Design principles",
+    "id": "mvc",
+    "title": "MVC pattern",
+    "kind": "HTTP controller and HTML view",
+    "document": "docs/topics/16-mvc.md",
+    "implementation": [
+      "architect_lab/server.py",
+      "architect_lab/domain.py"
+    ],
+    "command": "python3 -m architect_lab.server",
+    "source": "https://martinfowler.com/bliki/PresentationDomainDataLayering.html"
+  },
+  {
+    "number": 17,
+    "group": "3. Design principles",
+    "id": "gof",
+    "title": "GoF design patterns",
+    "kind": "All 23 executable patterns",
+    "document": "docs/topics/17-gof.md",
+    "implementation": [
+      "architect_lab/gof.py",
+      "docs/GOF.md"
+    ],
+    "command": "python3 -m architect_lab gof",
+    "source": "https://www.informit.com/store/design-patterns-elements-of-reusable-object-oriented-9780321700698"
+  },
+  {
+    "number": 18,
+    "group": "4. Architectural patterns",
+    "id": "microservices",
+    "title": "Microservices",
+    "kind": "Two real HTTP services",
+    "document": "docs/topics/18-microservices.md",
+    "implementation": [
+      "compose.yaml",
+      "architect_lab/server.py",
+      "examples/catalog/javascript/catalog.mjs"
+    ],
+    "command": "docker compose up --build -d",
+    "source": "https://martinfowler.com/articles/microservices.html"
+  },
+  {
+    "number": 19,
+    "group": "4. Architectural patterns",
+    "id": "pubsub",
+    "title": "Publish Subscribe",
+    "kind": "Consumer-offset model and Kafka integration",
+    "document": "docs/topics/19-pubsub.md",
+    "implementation": [
+      "architect_lab/distributed.py",
+      "scripts/kafka_roundtrip.py"
+    ],
+    "command": "python3 -m architect_lab events",
+    "source": "https://kafka.apache.org/quickstart/"
+  },
+  {
+    "number": 20,
+    "group": "4. Architectural patterns",
+    "id": "eda",
+    "title": "Event-Driven Architecture / EDA",
+    "kind": "Transactional outbox and inbox",
+    "document": "docs/topics/20-eda.md",
+    "implementation": [
+      "architect_lab/storage.py",
+      "tests/test_core.py"
+    ],
+    "command": "python3 -m architect_lab events",
+    "source": "https://kafka.apache.org/quickstart/"
+  },
+  {
+    "number": 21,
+    "group": "4. Architectural patterns",
+    "id": "layered",
+    "title": "Layered architecture",
+    "kind": "Presentation, domain, and persistence separation",
+    "document": "docs/topics/21-layered.md",
+    "implementation": [
+      "architect_lab/server.py",
+      "architect_lab/domain.py",
+      "architect_lab/storage.py"
+    ],
+    "command": "python3 -m architect_lab orders",
+    "source": "https://martinfowler.com/bliki/PresentationDomainDataLayering.html"
+  },
+  {
+    "number": 22,
+    "group": "4. Architectural patterns",
+    "id": "client-server",
+    "title": "Client-Server",
+    "kind": "HTTP client and server contract",
+    "document": "docs/topics/22-client-server.md",
+    "implementation": [
+      "architect_lab/server.py",
+      "scripts/smoke_http.py"
+    ],
+    "command": "python3 -m architect_lab.server",
+    "source": "https://docs.python.org/3/library/http.server.html"
+  },
+  {
+    "number": 23,
+    "group": "4. Architectural patterns",
+    "id": "hexagonal",
+    "title": "Hexagonal architecture",
+    "kind": "Ports and adapters",
+    "document": "docs/topics/23-hexagonal.md",
+    "implementation": [
+      "architect_lab/domain.py",
+      "architect_lab/storage.py",
+      "tests/test_core.py"
+    ],
+    "command": "python3 -m architect_lab orders",
+    "source": "https://alistair.cockburn.us/hexagonal-architecture/"
+  },
+  {
+    "number": 24,
+    "group": "5. Platform knowledge",
+    "id": "containers",
+    "title": "Containers",
+    "kind": "Dockerfile and Compose",
+    "document": "docs/topics/24-containers.md",
+    "implementation": [
+      "Dockerfile",
+      "compose.yaml",
+      ".dockerignore"
+    ],
+    "command": "docker compose up --build -d",
+    "source": "https://docs.docker.com/compose/intro/compose-application-model/"
+  },
+  {
+    "number": 25,
+    "group": "5. Platform knowledge",
+    "id": "orchestration",
+    "title": "Orchestration / Kubernetes",
+    "kind": "Deployment, Service, probes, resource limits",
+    "document": "docs/topics/25-orchestration.md",
+    "implementation": [
+      "infra/k8s/orders.yaml"
+    ],
+    "command": "kubectl apply --dry-run=client -f infra/k8s/orders.yaml",
+    "source": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+  },
+  {
+    "number": 26,
+    "group": "5. Platform knowledge",
+    "id": "cloud",
+    "title": "Cloud",
+    "kind": "AWS CloudFormation template",
+    "document": "docs/topics/26-cloud.md",
+    "implementation": [
+      "infra/cloud/storage.yaml"
+    ],
+    "command": "python3 scripts/check_configs.py",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-s3-bucket.html"
+  },
+  {
+    "number": 27,
+    "group": "5. Platform knowledge",
+    "id": "serverless",
+    "title": "Serverless",
+    "kind": "Lambda handler and SAM template",
+    "document": "docs/topics/27-serverless.md",
+    "implementation": [
+      "examples/serverless/handler.py",
+      "infra/cloud/sam.yaml",
+      "data/lambda-event.json"
+    ],
+    "command": "python3 examples/serverless/handler.py",
+    "source": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/using-sam-cli-local-invoke.html"
+  },
+  {
+    "number": 28,
+    "group": "5. Platform knowledge",
+    "id": "cdn",
+    "title": "CDN",
+    "kind": "Local reverse-proxy cache simulation",
+    "document": "docs/topics/28-cdn.md",
+    "implementation": [
+      "infra/nginx.conf",
+      "compose.yaml"
+    ],
+    "command": "docker compose up --build -d",
+    "source": "https://nginx.org/en/docs/http/ngx_http_proxy_module.html"
+  },
+  {
+    "number": 29,
+    "group": "5. Platform knowledge",
+    "id": "gateway",
+    "title": "API Gateway",
+    "kind": "NGINX routing and rate-limit configuration",
+    "document": "docs/topics/29-gateway.md",
+    "implementation": [
+      "infra/nginx.conf",
+      "architect_lab/distributed.py"
+    ],
+    "command": "python3 -m architect_lab distributed",
+    "source": "https://nginx.org/en/docs/http/ngx_http_proxy_module.html"
+  },
+  {
+    "number": 30,
+    "group": "5. Platform knowledge",
+    "id": "distributed-systems",
+    "title": "Distributed Systems",
+    "kind": "Hashing, partitions, retries, and delivery models",
+    "document": "docs/topics/30-distributed-systems.md",
+    "implementation": [
+      "architect_lab/distributed.py",
+      "architect_lab/storage.py"
+    ],
+    "command": "python3 -m architect_lab distributed",
+    "source": "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf"
+  },
+  {
+    "number": 31,
+    "group": "5. Platform knowledge",
+    "id": "cicd",
+    "title": "CI/CD",
+    "kind": "Automated validation and release exercise",
+    "document": "docs/topics/31-cicd.md",
+    "implementation": [
+      "Jenkinsfile",
+      "scripts/check_docs.py",
+      "Dockerfile"
+    ],
+    "command": "python3 -m unittest discover -s tests -v",
+    "source": "https://docs.github.com/en/actions/get-started/quickstart"
+  },
+  {
+    "number": 32,
+    "group": "6. Data and analytics",
+    "id": "sql",
+    "title": "SQL",
+    "kind": "SQLite schema, transaction, index, and query plan",
+    "document": "docs/topics/32-sql.md",
+    "implementation": [
+      "architect_lab/storage.py",
+      "architect_lab/data.py"
+    ],
+    "command": "python3 -m architect_lab data",
+    "source": "https://docs.python.org/3/library/sqlite3.html"
+  },
+  {
+    "number": 33,
+    "group": "6. Data and analytics",
+    "id": "nosql",
+    "title": "NoSQL",
+    "kind": "Document model plus real Redis profile",
+    "document": "docs/topics/33-nosql.md",
+    "implementation": [
+      "architect_lab/data.py",
+      "compose.yaml"
+    ],
+    "command": "python3 -m architect_lab data",
+    "source": "https://hub.docker.com/_/redis"
+  },
+  {
+    "number": 34,
+    "group": "6. Data and analytics",
+    "id": "hadoop",
+    "title": "Hadoop",
+    "kind": "Hadoop Streaming mapper and reducer",
+    "document": "docs/topics/34-hadoop.md",
+    "implementation": [
+      "examples/hadoop/mapper.py",
+      "examples/hadoop/reducer.py",
+      "data/events.jsonl"
+    ],
+    "command": "python3 examples/hadoop/mapper.py < data/events.jsonl | sort | python3 examples/hadoop/reducer.py",
+    "source": "https://hadoop.apache.org/docs/stable/hadoop-streaming/HadoopStreaming.html"
+  },
+  {
+    "number": 35,
+    "group": "6. Data and analytics",
+    "id": "kafka",
+    "title": "Kafka",
+    "kind": "Real broker and producer/consumer integration",
+    "document": "docs/topics/35-kafka.md",
+    "implementation": [
+      "compose.yaml",
+      "scripts/kafka_roundtrip.py"
+    ],
+    "command": "docker compose --profile data up -d kafka redis",
+    "source": "https://kafka.apache.org/quickstart/"
+  },
+  {
+    "number": 36,
+    "group": "6. Data and analytics",
+    "id": "data-streaming",
+    "title": "Data Streaming",
+    "kind": "Event-time windows and late-data policy",
+    "document": "docs/topics/36-data-streaming.md",
+    "implementation": [
+      "architect_lab/distributed.py"
+    ],
+    "command": "python3 -m architect_lab streaming",
+    "source": "https://kafka.apache.org/quickstart/"
+  },
+  {
+    "number": 37,
+    "group": "6. Data and analytics",
+    "id": "olap",
+    "title": "OLAP",
+    "kind": "Star-schema aggregation",
+    "document": "docs/topics/37-olap.md",
+    "implementation": [
+      "architect_lab/data.py"
+    ],
+    "command": "python3 -m architect_lab data",
+    "source": "https://docs.python.org/3/library/sqlite3.html"
+  },
+  {
+    "number": 38,
+    "group": "6. Data and analytics",
+    "id": "object-storage",
+    "title": "Object Storage",
+    "kind": "Immutable local objects and S3 template",
+    "document": "docs/topics/38-object-storage.md",
+    "implementation": [
+      "architect_lab/data.py",
+      "infra/cloud/storage.yaml"
+    ],
+    "command": "python3 -m architect_lab data",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-s3-bucket.html"
+  },
+  {
+    "number": 39,
+    "group": "6. Data and analytics",
+    "id": "data-migration",
+    "title": "Data Migration",
+    "kind": "Idempotent expand/backfill example",
+    "document": "docs/topics/39-data-migration.md",
+    "implementation": [
+      "architect_lab/storage.py",
+      "tests/test_core.py"
+    ],
+    "command": "python3 -m architect_lab migration",
+    "source": "https://docs.python.org/3/library/sqlite3.html"
+  },
+  {
+    "number": 40,
+    "group": "7. Networking and security",
+    "id": "dns",
+    "title": "DNS",
+    "kind": "Real loopback UDP packet exchange",
+    "document": "docs/topics/40-dns.md",
+    "implementation": [
+      "architect_lab/networking.py"
+    ],
+    "command": "python3 -m architect_lab.networking",
+    "source": "https://www.rfc-editor.org/rfc/rfc1035.html"
+  },
+  {
+    "number": 41,
+    "group": "7. Networking and security",
+    "id": "tcp",
+    "title": "TCP",
+    "kind": "Real framed byte-stream exchange",
+    "document": "docs/topics/41-tcp.md",
+    "implementation": [
+      "architect_lab/networking.py"
+    ],
+    "command": "python3 -m architect_lab.networking",
+    "source": "https://www.rfc-editor.org/rfc/rfc9293.html"
+  },
+  {
+    "number": 42,
+    "group": "7. Networking and security",
+    "id": "tls",
+    "title": "TLS",
+    "kind": "Real certificate-verified TLS handshake",
+    "document": "docs/topics/42-tls.md",
+    "implementation": [
+      "architect_lab/networking.py"
+    ],
+    "command": "python3 -m architect_lab.networking",
+    "source": "https://www.rfc-editor.org/rfc/rfc8446.html"
+  },
+  {
+    "number": 43,
+    "group": "7. Networking and security",
+    "id": "https",
+    "title": "HTTPS",
+    "kind": "Real HTTP over TLS",
+    "document": "docs/topics/43-https.md",
+    "implementation": [
+      "architect_lab/networking.py",
+      "architect_lab/server.py"
+    ],
+    "command": "python3 -m architect_lab.networking",
+    "source": "https://docs.python.org/3/library/ssl.html"
+  },
+  {
+    "number": 44,
+    "group": "7. Networking and security",
+    "id": "encryption",
+    "title": "Encryption",
+    "kind": "AES-GCM authenticated encryption",
+    "document": "docs/topics/44-encryption.md",
+    "implementation": [
+      "architect_lab/security.py",
+      "requirements-security.txt"
+    ],
+    "command": "python3 -c \"from architect_lab.security import encrypt_roundtrip; print(encrypt_roundtrip())\"",
+    "source": "https://cryptography.io/en/latest/hazmat/primitives/aead/"
+  },
+  {
+    "number": 45,
+    "group": "7. Networking and security",
+    "id": "jwt",
+    "title": "JWT",
+    "kind": "Fixed-algorithm educational signer and verifier",
+    "document": "docs/topics/45-jwt.md",
+    "implementation": [
+      "architect_lab/security.py",
+      "tests/test_security.py"
+    ],
+    "command": "python3 -m architect_lab security",
+    "source": "https://www.rfc-editor.org/rfc/rfc8725.html"
+  },
+  {
+    "number": 46,
+    "group": "7. Networking and security",
+    "id": "oauth",
+    "title": "OAuth",
+    "kind": "Authorization Code with PKCE model",
+    "document": "docs/topics/46-oauth.md",
+    "implementation": [
+      "architect_lab/security.py",
+      "tests/test_security.py"
+    ],
+    "command": "python3 -m architect_lab security",
+    "source": "https://www.rfc-editor.org/rfc/rfc9700.html"
+  },
+  {
+    "number": 47,
+    "group": "7. Networking and security",
+    "id": "credentials",
+    "title": "Credentials",
+    "kind": "Salted password verification and secret handling",
+    "document": "docs/topics/47-credentials.md",
+    "implementation": [
+      "architect_lab/security.py",
+      ".gitignore",
+      "requirements-security.txt"
+    ],
+    "command": "python3 -m architect_lab security",
+    "source": "https://docs.python.org/3/library/hashlib.html"
+  },
+  {
+    "number": 48,
+    "group": "8. Supporting skills",
+    "id": "technology",
+    "title": "Technology evaluation",
+    "kind": "Decision matrix and evaluation record",
+    "document": "docs/topics/48-technology.md",
+    "implementation": [
+      "architect_lab/planning.py",
+      "docs/adr/0001-start-simple.md"
+    ],
+    "command": "python3 -m architect_lab planning",
+    "source": "https://sre.google/sre-book/monitoring-distributed-systems/"
+  },
+  {
+    "number": 49,
+    "group": "8. Supporting skills",
+    "id": "decision-making",
+    "title": "Decision Making",
+    "kind": "ADR with alternatives and revisit criteria",
+    "document": "docs/topics/49-decision-making.md",
+    "implementation": [
+      "docs/adr/0001-start-simple.md",
+      "architect_lab/planning.py"
+    ],
+    "command": "python3 -m architect_lab planning",
+    "source": "https://martinfowler.com/bliki/PresentationDomainDataLayering.html"
+  },
+  {
+    "number": 50,
+    "group": "8. Supporting skills",
+    "id": "stakeholders",
+    "title": "Stakeholder Management",
+    "kind": "Concrete RACI and review plan",
+    "document": "docs/topics/50-stakeholders.md",
+    "implementation": [
+      "docs/WORKING_WITH_PEOPLE.md",
+      "architect_lab/planning.py"
+    ],
+    "command": "python3 -m architect_lab planning",
+    "source": "https://sre.google/workbook/incident-response/"
+  },
+  {
+    "number": 51,
+    "group": "8. Supporting skills",
+    "id": "communication",
+    "title": "Communication",
+    "kind": "Architecture brief and incident update examples",
+    "document": "docs/topics/51-communication.md",
+    "implementation": [
+      "docs/WORKING_WITH_PEOPLE.md",
+      "docs/SYSTEM_DESIGN.md"
+    ],
+    "command": "python3 scripts/check_docs.py",
+    "source": "https://sre.google/workbook/incident-response/"
+  },
+  {
+    "number": 52,
+    "group": "8. Supporting skills",
+    "id": "estimation",
+    "title": "Estimation",
+    "kind": "PERT and critical-path calculator",
+    "document": "docs/topics/52-estimation.md",
+    "implementation": [
+      "architect_lab/planning.py"
+    ],
+    "command": "python3 -m architect_lab planning",
+    "source": "https://sre.google/workbook/incident-response/"
+  },
+  {
+    "number": 53,
+    "group": "8. Supporting skills",
+    "id": "leadership",
+    "title": "Leadership",
+    "kind": "Incident exercise and ownership practices",
+    "document": "docs/topics/53-leadership.md",
+    "implementation": [
+      "docs/WORKING_WITH_PEOPLE.md",
+      "docs/EXERCISES.md"
+    ],
+    "command": "python3 scripts/check_docs.py",
+    "source": "https://sre.google/workbook/incident-response/"
+  }
+]

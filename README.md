@@ -9,6 +9,7 @@ Harbor、NSQ、ブラウザ内PostgreSQLを、別々の断片ではなく1つの
 | `apps/harbor-observer` | 複数HarborサーバのHTTP応答を同時に検査 | 同一パスのSHA-256比較、divergence判定、履歴保存 |
 | `apps/nsq-reliable-worker` | NSQでジョブ投入・再試行・重複排除・DLQ | 外部client libraryなしのNSQ V2 consumer、durable outbox、idempotent worker |
 | `apps/pgplay-recipes` | PGliteでPostgreSQLをブラウザ内実行 | Harbor/NSQ向けschema recipe、EXPLAIN、URL共有、IndexedDB永続化 |
+| [`apps/software-architect-roadmap`](apps/software-architect-roadmap/README.md) | Software Architect Roadmap全53項目の解説と実装 | 4言語API、GoF 23種、分散処理・認証・データ基盤・障害テスト |
 
 詳しい役割分担は [`docs/PROJECTS.md`](docs/PROJECTS.md)、採用理由と調査元は [`docs/REFERENCES.md`](docs/REFERENCES.md)、GitHub公開手順は [`docs/PUBLISH.md`](docs/PUBLISH.md) を参照してください。
 
@@ -78,3 +79,15 @@ distributed-workbench/
 - Harbor Observerは設定済みサーバに対してのみ相対パスをprobeし、任意URLへのproxyにはなりません。
 - NSQ sampleのfile-backed storeは単一instance向けです。複数instanceで運用するときは同梱のPostgreSQL migrationへ置き換えてください。
 - `apps/pgplay-recipes` はPGlite `0.5.4` を使用します。
+
+## Software Architect Roadmap
+
+[全53項目の目次](apps/software-architect-roadmap/docs/ROADMAP.md)から、各概念の意味、実装、実行方法、失敗ケースを確認できます。
+
+```bash
+cd apps/software-architect-roadmap
+python3 -m architect_lab all
+python3 -m unittest discover -s tests -v
+```
+
+外部サービスの手順と検証範囲は[教材README](apps/software-architect-roadmap/README.md)を参照してください。

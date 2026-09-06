@@ -1,0 +1,1 @@
+{"fields":{"project":{"key":"LAB"},"summary":"Make order retries idempotent","issuetype":{"name":"Task"},"description":{"type":"doc","version":1,"content":[{"type":"paragraph","content":[{"type":"text","text":"Given the same key and body, retries return one order. A conflicting body returns 409. A crash between order and outbox insertion rolls back both."}]}]}}}
