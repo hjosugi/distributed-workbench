@@ -1,4 +1,4 @@
-# 3つのプロジェクトの役割
+# プロジェクトの役割
 
 ## 1. Harbor Observer
 
@@ -70,3 +70,15 @@ outboxやidempotencyのschemaを試すたびにPostgreSQL containerを作るの�
 3. PGPlay Recipesでoutbox/idempotency schemaを変更する
 4. Harbor serverを2台以上設定し、`/status` と `/blob/{digest}` を比較する
 5. file-backed storeをPostgreSQL実装に置き換える
+
+## Realtime Prompter
+
+[`apps/realtime-prompter`](../apps/realtime-prompter/README.md) は、音声の部分文字起こしから生成を開始し、WebSocketでプロンプターを更新する独立したローカル教材です。
+
+- Voskによる部分結果と確定結果、Ollamaによる生成ストリーム
+- FastAPIの双方向WebSocket、PCM音声チャンクと制御メッセージ
+- revisionによる古い生成結果の除外、キャンセル、debounce、音声backpressure
+- モデル不要のデモ、テストデータ、API・状態管理・ブラウザテスト
+- AWS構成との対応表と短い英語の面接回答
+
+初回準備後はオフラインで動作します。既存Docker Composeと独立して起動し、AWSアカウントやAPIキーは使いません。

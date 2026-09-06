@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Local Prompter</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<main>
+  <header><div><p class="eyebrow">DISTRIBUTED WORKBENCH / LIVE LAB</p><h1>Local Prompter<span>話している途中から、次のヒントを。</span></h1></div><span id="connection" class="badge">接続中</span></header>
+  <div class="toolbar">
+    <button id="demo" class="primary" disabled>デモを再生</button>
+    <button id="mic" disabled>マイクを開始</button>
+    <button id="stop" disabled>音声・デモを停止</button>
+    <button id="reset" disabled>クリア・生成を中止</button>
+    <button id="reconnect" hidden>再接続</button>
+    <span id="mode">設定を確認中</span>
+  </div>
+  <p id="notice" role="status">デモでは架空の発言を再生します。実音声にはVoskモデルが必要です。</p>
+  <div class="pipeline" aria-label="処理の流れ"><span>01 音声・テキスト入力</span><span>02 部分文字起こし</span><span>03 ストリーム生成</span><span>04 WebSocket配信</span></div>
+  <div class="workspace">
+    <section class="transcript-panel"><div class="section-head"><h2>文字起こし</h2><span id="transcript-state" class="badge">待機</span></div><p class="hint">確定した文の後に、修正される途中の文を表示します。</p><div id="transcript" aria-live="polite"><span id="confirmed"></span><span id="partial"></span></div>
+      <form id="text-form"><label for="text-input">テキストでも試す</label><textarea id="text-input" maxlength="2000" rows="3" placeholder="今日は東京の交通について…"></textarea><div class="form-actions"><button id="partial-send" type="button" disabled>部分結果を送信</button><button id="final-send" type="submit" disabled>発言を確定</button></div></form>
+    </section>
+    <section class="prompter-panel"><div class="section-head"><h2>プロンプター</h2><span id="generation-state" class="badge">待機</span></div><p class="hint">途中の文字起こしに基づく暫定ヒントです。事実の検索・検証は行いません。</p><div id="answer" aria-live="polite">「デモを再生」で、生成結果が少しずつ届く様子を確認できます。</div><footer><span>REVISION <b id="revision">0</b></span><span>最初の文字まで <b id="latency">—</b></span></footer></section>
+  </div>
+  <details><summary>イベントを見る <span id="event-count">0</span></summary><p class="hint">最新80件。音声の内容はファイルへ保存しません。</p><pre id="events"></pre></details>
+  <p class="footnote">この画面と推論はローカルで動作します。デモの生成は固定テンプレートです。マイクは録音を停止すると解放されます。</p>
+</main>
+<script type="module" src="/static/app.mjs"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+[
+  {"after_ms": 0, "type": "transcript", "text": "今日は東京の", "is_final": false},
+  {"after_ms": 1300, "type": "transcript", "text": "今日は東京の高温について", "is_final": false},
+  {"after_ms": 1300, "type": "transcript", "text": "今日は東京の交通について", "is_final": false},
+  {"after_ms": 1500, "type": "transcript", "text": "今日は東京の交通についてお伝えします。", "is_final": true},
+  {"after_ms": 2300, "type": "transcript", "text": "混雑への対策を", "is_final": false},
+  {"after_ms": 1500, "type": "transcript", "text": "混雑への対策を担当者に伺います。", "is_final": true}
+]

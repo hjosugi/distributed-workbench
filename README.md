@@ -1,6 +1,6 @@
 # Distributed Workbench
 
-Harbor、NSQ、ブラウザ内PostgreSQLを、別々の断片ではなく1つのモノレポにまとめた実用サンプル集です。
+Harbor、NSQ、ブラウザ内PostgreSQL、リアルタイム音声処理などを、1つのモノレポにまとめた実用サンプル集です。
 
 ## まず見る場所
 
@@ -10,10 +10,13 @@ Harbor、NSQ、ブラウザ内PostgreSQLを、別々の断片ではなく1つの
 | `apps/nsq-reliable-worker` | NSQでジョブ投入・再試行・重複排除・DLQ | 外部client libraryなしのNSQ V2 consumer、durable outbox、idempotent worker |
 | `apps/pgplay-recipes` | PGliteでPostgreSQLをブラウザ内実行 | Harbor/NSQ向けschema recipe、EXPLAIN、URL共有、IndexedDB永続化 |
 | [`apps/software-architect-roadmap`](apps/software-architect-roadmap/README.md) | Software Architect Roadmap全53項目の解説と実装 | 4言語API、GoF 23種、分散処理・認証・データ基盤・障害テスト |
+| [`apps/realtime-prompter`](apps/realtime-prompter/README.md) | ローカル音声認識→生成ストリーム→WebSocket表示 | Vosk / Ollama、部分結果の修正、生成キャンセル、モデル不要デモ |
 
 詳しい役割分担は [`docs/PROJECTS.md`](docs/PROJECTS.md)、採用理由と調査元は [`docs/REFERENCES.md`](docs/REFERENCES.md)、GitHub公開手順は [`docs/PUBLISH.md`](docs/PUBLISH.md) を参照してください。
 
 ## 最短の起動方法
+
+音声プロンプターは独立したPythonアプリです。[ローカル起動手順](apps/realtime-prompter/README.md)を参照してください。以下のDocker Composeには含まれません。
 
 ### 全部Dockerで起動
 
