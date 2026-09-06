@@ -13,7 +13,7 @@
 | PCM変換 | clipping、16-bit little-endian、末尾flush、flush後の停止を検証 |
 | 日本語Vosk | `vosk-model-small-ja-0.22` のロードと48 kHz無音PCMの受付・final flushを実行 |
 | 英語Voskの実音声経路 | 公式sample WAV → WebSocket → Vosk → テンプレート生成 → WebSocketを実行 |
-| ブラウザE2E | テストを収録。Chromiumの取得がタイムアウトし、この環境では未完走 |
+| ブラウザE2E | GitHub Actionsで成功。部分結果の修正、final、生成中止、HTML文字列の無害な表示、390px幅、外部HTTP要求なしを確認。開発環境でのChromium取得はタイムアウト |
 | Ollama実モデル推論 | この環境ではOllamaランタイム未導入のため未検証 |
 | 実マイク・日本語認識精度 | 未検証。無音受付の確認は日本語の認識精度確認ではない |
 
@@ -29,3 +29,11 @@
 | `vosk-model-small-en-us-0.15` | `30f26242c4eb449f948e42cb302dd7a686cb29a3423a8367f99ff41780942498` |
 
 GitHub Actionsの `realtime-prompter` workflowはモデル不要のテストとブラウザE2Eを実行します。Vosk・OllamaのモデルはCIで自動取得しません。実モデルのテスト結果と、adapterをmockで確認した結果は区別してください。
+
+## GitHub Actionsの結果
+
+実装commit `05abdab4bd532c91522019d3b3174239b4f8377e` で次のworkflowが成功しました。
+
+- [realtime-prompter：Python・Node・Chromium E2E](https://github.com/hjosugi/distributed-workbench/actions/runs/34026501254)
+- [既存ci](https://github.com/hjosugi/distributed-workbench/actions/runs/34026501097)
+- [依存グラフ更新](https://github.com/hjosugi/distributed-workbench/actions/runs/34026502542)
