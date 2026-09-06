@@ -21,7 +21,15 @@ Important behavior tests include 24 concurrent retries producing one order, orde
 
 ## CI verification
 
-The parent [architect-roadmap workflow](../../../.github/workflows/architect-roadmap.yml) also defines Go tests, four-language HTTP contracts, Docker build, NGINX cache/bypass checks, real Kafka delivery, and Redis hash/expiration checks. A workflow file alone is not a passing result. Inspect the [Actions runs](https://github.com/hjosugi/distributed-workbench/actions/workflows/architect-roadmap.yml) for actual execution status.
+The implementation commit `aa8caeb7efe42452c88f52270c309026c94e3cbf` passed [architect-roadmap run 34013076842](https://github.com/hjosugi/distributed-workbench/actions/runs/34013076842).
+
+| CI job | Verified behavior | Result |
+|---|---|---|
+| python | 34 behavior tests, all CLI labs, documentation links, YAML/JSON parsing | Success |
+| catalogs | Python/JavaScript/Java/Go HTTP contracts, Node test, Go tests | Success |
+| containers | Docker build/start, order retry/conflict, NGINX cache and authorization bypass, Kafka two-group delivery, Redis hash operations/TTL | Success |
+
+The existing parent [CI run 34013076904](https://github.com/hjosugi/distributed-workbench/actions/runs/34013076904) also passed. This record was added afterward as a documentation-only change. The parent [workflow](../../../.github/workflows/architect-roadmap.yml) provides the reproducible checks; consult [Actions](https://github.com/hjosugi/distributed-workbench/actions/workflows/architect-roadmap.yml) for later runs.
 
 ## External systems not executed locally
 
